@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with: 
-	repository: 'iSPIRT/depa-training'
+	repository: 'pavankad/ci-demo'
 	submodules: recursive 
     
     - uses: azure/login@v1
