@@ -1,0 +1,3 @@
+[submodule "external/confidential-sidecar-containers"]
+	path = external/confidential-sidecar-containers
+	url = https://github.com/microsoft/confidential-sidecar-containers
