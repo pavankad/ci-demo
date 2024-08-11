@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with: 
+	repository: 'iSPIRT/depa-training'
+	submodules: recursive 
     
     - uses: azure/login@v1
       with:
@@ -29,8 +32,28 @@ jobs:
         python-version: 3.x
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+	# Add Docker's official GPG key:
+	apt-get install ca-certificates curl
+	install -m 0755 -d /etc/apt/keyrings
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	echo \
+  		"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  		$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  	sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update
+	#install docker packages
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	#install make
+	apt-get install make
+	#install go
+	curl --ouput go1.22.6.linux-amd64.tar.gz https://go.dev/dl/go1.22.6.linux-amd64.tar.gz 
+	rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.6.linux-amd64.tar.gz
+	export PATH=$PATH:/usr/local/go/bin
+	echo 'export PATH=$PATH:/usr/local/go/bin' >> $HOME/.profile
+
     - name: Deploy web App using GH Action azure/webapps-deploy
       uses: azure/webapps-deploy@v3
       with:
