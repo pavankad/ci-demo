@@ -7,6 +7,8 @@ permissions:
   id-token: write
   contents: read
 
+environment: dev 
+
 env:
   AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME }} # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: ${{ vars.AZURE_WEBAPP_PACKAGE_PATH }}  #set this to the path to your web app project, defaults to the repository root
