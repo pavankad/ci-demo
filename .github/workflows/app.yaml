@@ -7,16 +7,16 @@ permissions:
   id-token: write
   contents: read
 
-environment: dev 
 
-env:
-  AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME }} # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: ${{ vars.AZURE_WEBAPP_PACKAGE_PATH }}  #set this to the path to your web app project, defaults to the repository root
+#env:
+#  AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME }} # set this to your application's name
+#  AZURE_WEBAPP_PACKAGE_PATH: ${{ vars.AZURE_WEBAPP_PACKAGE_PATH }}  #set this to the path to your web app project, defaults to the repository root
 
 jobs:
   build:
     #runs-on: ubuntu-latest
     runs-on: [self-hosted, Linux, X64]
+    environment: dev 
     steps:
     - uses: actions/checkout@v4
       with:
@@ -60,8 +60,8 @@ jobs:
     - name: Deploy web App using GH Action azure/webapps-deploy
       uses: azure/webapps-deploy@v3
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+        package: ${{ vars.AZURE_WEBAPP_PACKAGE_PATH }}
         
     - name: logout
       run: |
