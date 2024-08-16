@@ -22,7 +22,7 @@ jobs:
         submodules: recursive
 
     - name: Login to ACR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v2
         with:
           registry: ispirt.azurecr.io
           username: ${{ secrets.AZURE_PULL_USER}}
