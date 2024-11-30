@@ -1,4 +1,4 @@
-function generateBids(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
+function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
   return {
     ad: {
       renderUrl: "https://example.com/ad",
