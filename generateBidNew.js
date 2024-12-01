@@ -115,7 +115,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: 'TEE_KV_SERVER_ADDR' },
+        server_info: { server_name: 'https://localhost:50051' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -148,7 +148,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
         },
       },
       {
-        server_info: { server_name: 'TEE_KV_SERVER_ADDR' },
+        server_info: { server_name: 'https://localhost:50051' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -188,7 +188,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
   console.log(fetchAdditionalSignalsResult);
 
   return {
-    render: '%s' + interest_groups.adRenderIds[0],
+    //render: '%s' + interest_groups.adRenderIds[0],
     ad: { arbitraryMetadataField: 1 },
     bid: 10,
     allowComponentAuction: false,
