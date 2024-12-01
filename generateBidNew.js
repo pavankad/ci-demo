@@ -27,7 +27,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: 'TEE_KV_SERVER_ADDR' },
+        server_info: { server_name: 'https://localhost:50051' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -60,7 +60,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
         },
       },
       {
-        server_info: { server_name: 'TEE_KV_SERVER_ADDR' },
+        server_info: { server_name: 'https://localhost:50051' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
