@@ -108,4 +108,92 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
   };
 }
 
+function generateBids(interest_groups, auction_signals, buyer_signals, trusted_bidding_signals, device_signals) {
+  // Reshaped into an AdWithBid.
+  burnCpu(2);
+
+  const batchKVGetValuesRequest = {
+    requests: [
+      {
+        server_info: { server_name: 'TEE_KV_SERVER_ADDR' },
+        get_values_request: {
+          client_version: 'v2',
+          metadata: {
+            hostname: 'example.com',
+          },
+          partitions: [
+            {
+              id: 0,
+              compressionGroupId: 0,
+              arguments: [
+                {
+                  tags: ['structured', 'groupNames'],
+                  data: ['hello'],
+                },
+                {
+                  tags: ['custom', 'keys'],
+                  data: ['key1'],
+                },
+              ],
+            },
+          ],
+          consented_debug_config: {
+            is_consented: true,
+            token: 'debug_token',
+          },
+          log_context: {
+            generation_id: 'client_UUID',
+            adtech_debug_id: 'adtech_debug_test',
+          },
+        },
+      },
+      {
+        server_info: { server_name: 'TEE_KV_SERVER_ADDR' },
+        get_values_request: {
+          client_version: 'v2',
+          metadata: {
+            hostname: 'example.com',
+          },
+          partitions: [
+            {
+              id: 0,
+              compressionGroupId: 0,
+              arguments: [
+                {
+                  tags: ['structured', 'groupNames'],
+                  data: ['hello'],
+                },
+                {
+                  tags: ['custom', 'keys'],
+                  data: ['key1'],
+                },
+              ],
+            },
+          ],
+          consented_debug_config: {
+            is_consented: true,
+            token: 'debug_token',
+          },
+          log_context: {
+            generation_id: 'client_UUID',
+            adtech_debug_id: 'adtech_debug_test',
+          },
+        },
+      },
+    ],
+  };
+
+  const jsonRequest = JSON.stringify(batchKVGetValuesRequest);
+  const fetchAdditionalSignalsResult = fetchAdditionalSignals(jsonRequest);
+  console.log(fetchAdditionalSignalsResult);
+
+  return {
+    render: '%s' + interest_groups.adRenderIds[0],
+    ad: { arbitraryMetadataField: 1 },
+    bid: 10,
+    allowComponentAuction: false,
+    bidSignals: JSON.stringify(fetchAdditionalSignalsResult)
+  };
+}
+
 //await generateBid({ adRenderIds: ["A"]});
