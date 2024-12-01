@@ -96,47 +96,6 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
               ],
             },
           ],
-          consented_debug_config: {
-            is_consented: true,
-            token: 'debug_token',
-          },
-          log_context: {
-            generation_id: 'client_UUID',
-            adtech_debug_id: 'adtech_debug_test',
-          },
-        },
-      },
-      {
-        server_info: { server_name: 'https://localhost:50051' },
-        get_values_request: {
-          client_version: 'v2',
-          metadata: {
-            hostname: 'example.com',
-          },
-          partitions: [
-            {
-              id: 0,
-              compressionGroupId: 0,
-              arguments: [
-                {
-                  tags: ['structured', 'groupNames'],
-                  data: ['hello'],
-                },
-                {
-                  tags: ['custom', 'keys'],
-                  data: ['key1'],
-                },
-              ],
-            },
-          ],
-          consented_debug_config: {
-            is_consented: true,
-            token: 'debug_token',
-          },
-          log_context: {
-            generation_id: 'client_UUID',
-            adtech_debug_id: 'adtech_debug_test',
-          },
         },
       },
     ],
