@@ -63,7 +63,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
     ad: { arbitraryMetadataField: 1 },
     bid: 10,
     allowComponentAuction: false,
-    bidSignals: JSON.stringify(fetchAdditionalSignalsResult)
+    render: JSON.stringify(fetchAdditionalSignalsResult)
   };
 }
 
@@ -110,7 +110,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
     ad: { arbitraryMetadataField: 1 },
     bid: 10,
     allowComponentAuction: false,
-    bidSignals: JSON.stringify(fetchAdditionalSignalsResult)
+    render: JSON.stringify(fetchAdditionalSignalsResult)
   };
 }
 
