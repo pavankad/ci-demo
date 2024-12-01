@@ -100,7 +100,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
   console.log(fetchAdditionalSignalsResult);
 
   return {
-    render: '%s' + interest_groups.adRenderIds[0],
+    //render: '%s' + interest_groups.adRenderIds[0],
     ad: { arbitraryMetadataField: 1 },
     bid: 10,
     allowComponentAuction: false,
