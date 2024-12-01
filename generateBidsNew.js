@@ -27,7 +27,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: 'https://172.205.108.193' },
+        server_info: { server_name: '172.205.108.193' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -74,7 +74,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: 'https://172.205.108.193' },
+        server_info: { server_name: '172.205.108.193' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
