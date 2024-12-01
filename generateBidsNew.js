@@ -1,3 +1,4 @@
+
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,14 +20,14 @@ function burnCpu(milliseconds) {
   }
 }
 
-function generateBids(interest_groups, auction_signals, buyer_signals, trusted_bidding_signals, device_signals) {
+function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bidding_signals, device_signals) {
   // Reshaped into an AdWithBid.
   burnCpu(2);
 
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: 'KV_SERVER' },
+        server_info: { server_name: 'https://172.205.108.193:50051' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -48,47 +49,6 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
               ],
             },
           ],
-          consented_debug_config: {
-            is_consented: true,
-            token: 'debug_token',
-          },
-          log_context: {
-            generation_id: 'client_UUID',
-            adtech_debug_id: 'adtech_debug_test',
-          },
-        },
-      },
-      {
-        server_info: { server_name: 'SELECTION_KV_SERVER' },
-        get_values_request: {
-          client_version: 'v2',
-          metadata: {
-            hostname: 'example.com',
-          },
-          partitions: [
-            {
-              id: 0,
-              compressionGroupId: 0,
-              arguments: [
-                {
-                  tags: ['structured', 'groupNames'],
-                  data: ['hello'],
-                },
-                {
-                  tags: ['custom', 'keys'],
-                  data: ['key1'],
-                },
-              ],
-            },
-          ],
-          consented_debug_config: {
-            is_consented: true,
-            token: 'debug_token',
-          },
-          log_context: {
-            generation_id: 'client_UUID',
-            adtech_debug_id: 'adtech_debug_test',
-          },
         },
       },
     ],
@@ -99,7 +59,54 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
   console.log(fetchAdditionalSignalsResult);
 
   return {
-    render: '%s' + interest_groups.adRenderIds[0],
+    //render: '%s' + interest_groups.adRenderIds[0],
+    ad: { arbitraryMetadataField: 1 },
+    bid: 10,
+    allowComponentAuction: false,
+    bidSignals: JSON.stringify(fetchAdditionalSignalsResult)
+  };
+}
+
+function generateBids(interest_groups, auction_signals, buyer_signals, trusted_bidding_signals, device_signals) {
+  // Reshaped into an AdWithBid.
+  burnCpu(2);
+
+  const batchKVGetValuesRequest = {
+    requests: [
+      {
+        server_info: { server_name: 'https://172.205.108.193:50051' },
+        get_values_request: {
+          client_version: 'v2',
+          metadata: {
+            hostname: 'example.com',
+          },
+          partitions: [
+            {
+              id: 0,
+              compressionGroupId: 0,
+              arguments: [
+                {
+                  tags: ['structured', 'groupNames'],
+                  data: ['hello'],
+                },
+                {
+                  tags: ['custom', 'keys'],
+                  data: ['key1'],
+                },
+              ],
+            },
+          ],
+        },
+      },
+    ],
+  };
+
+  const jsonRequest = JSON.stringify(batchKVGetValuesRequest);
+  const fetchAdditionalSignalsResult = fetchAdditionalSignals(jsonRequest);
+  console.log(fetchAdditionalSignalsResult);
+
+  return {
+    //render: '%s' + interest_groups.adRenderIds[0],
     ad: { arbitraryMetadataField: 1 },
     bid: 10,
     allowComponentAuction: false,
