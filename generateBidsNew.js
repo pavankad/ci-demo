@@ -56,6 +56,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
           log_context: {
             generation_id: 'client_UUID',
             adtech_debug_id: 'adtech_debug_test',
+          },
         },
       },
     ],
@@ -110,6 +111,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
           log_context: {
             generation_id: 'client_UUID',
             adtech_debug_id: 'adtech_debug_test',
+          },
         },
       },
     ],
