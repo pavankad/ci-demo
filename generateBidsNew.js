@@ -27,7 +27,7 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: '172.205.108.193:50051' },
+        server_info: { server_name: 'KV_SERVER' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -49,6 +49,13 @@ function generateBid(interest_groups, auction_signals, buyer_signals, trusted_bi
               ],
             },
           ],
+          consented_debug_config: {
+            is_consented: true,
+            token: 'debug_token',
+          },
+          log_context: {
+            generation_id: 'client_UUID',
+            adtech_debug_id: 'adtech_debug_test',
         },
       },
     ],
@@ -74,7 +81,7 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
   const batchKVGetValuesRequest = {
     requests: [
       {
-        server_info: { server_name: '172.205.108.193:50051' },
+        server_info: { server_name: 'KV_SERVER' },
         get_values_request: {
           client_version: 'v2',
           metadata: {
@@ -96,6 +103,13 @@ function generateBids(interest_groups, auction_signals, buyer_signals, trusted_b
               ],
             },
           ],
+          consented_debug_config: {
+            is_consented: true,
+            token: 'debug_token',
+          },
+          log_context: {
+            generation_id: 'client_UUID',
+            adtech_debug_id: 'adtech_debug_test',
         },
       },
     ],
