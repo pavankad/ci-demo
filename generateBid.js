@@ -1,5 +1,4 @@
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
-    val = infer_function();
   return {
     ad: {
       renderUrl: "https://example.com/ad",
