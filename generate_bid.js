@@ -5,8 +5,12 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
     //const bidValue = 30;
 
     return {
-        ad: interestGroup.ads[0],  // Choose the first ad from the interest group
-        bid: bidValue,
-        render: interestGroup.ads[0].renderURL,
-    };
+       ad: {
+      renderUrl: "https://example.com/ad",
+      metadata: { category: "new_test" },
+      bidSignals: JSON.stringify(trustedBiddingSignals)
+    },
+    bid: bidValue,
+    render: "https://example.com/ad"
+  };
 }
