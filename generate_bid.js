@@ -1,4 +1,4 @@
-function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
+function generateBids(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
 
     // Use the Wasm function for secure bid computation
     //const bidValue = computeBid();
