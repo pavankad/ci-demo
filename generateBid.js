@@ -2,7 +2,7 @@ function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBidd
   return {
     ad: {
       renderUrl: "https://example.com/ad",
-      metadata: { category: "test" },
+      metadata: { category: "new_test" },
       bidSignals: JSON.stringify(trustedBiddingSignals)
     },
     bid: 0.5,
