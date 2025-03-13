@@ -4,7 +4,7 @@ function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBidd
     if (wasmHelper && wasmHelper.computeBid) {
         bidValue = wasmHelper.computeBid(); // Call Wasm function
     } else {
-        console.error("Wasm module not available in TEE
+        console.error("Wasm module not available in TEE");
         bidValue = -1;
     }
  
