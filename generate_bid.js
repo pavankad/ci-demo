@@ -1,12 +1,13 @@
-function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
+function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals, wasmHelper) {
     let bidValue = 30;
-    if (typeof Module !== "undefined"){
+    // Check if wasmHelper is available and has computeBid function
+    if (wasmHelper && wasmHelper.computeBid) {
+        bidValue = wasmHelper.computeBid(); // Call Wasm function
+    } else {
+        console.error("Wasm module not available in TEE
         bidValue = -1;
-    }else if(Module._computeBid) {
-        bidValue = -2;
-    }else{
-        bidValue = Module._computeBid(); // Call Wasm function
-    } 
+    }
+ 
     return {
     ad: {
       renderUrl: "https://example.com/ad",
