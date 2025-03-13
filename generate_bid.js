@@ -1,5 +1,8 @@
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
     const bidValue = 30;
+    if (Module._computeBid) {
+        let bidValue = Module._computeBid();
+    }
     return {
     ad: {
       renderUrl: "https://example.com/ad",
