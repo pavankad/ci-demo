@@ -1,10 +1,13 @@
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
     
     let bidValue = 30;
-    const importObject = {};  // Define imports if needed
-    let wasmInstance;
     if (!globalWasmHelper) {
            bidValue = -1;
+    }else {
+    const wasmInstance = new WebAssembly.Instance(globalWasmHelper, {});    
+    if (wasmInstance.exports.computeBid) {
+        bidValue = wasmInstance.exports.computeBid();
+        console.log("Bid Value from Wasm:", bidValue);
     }
     return {
     ad: {
