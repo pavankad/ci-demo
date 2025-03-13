@@ -18,3 +18,4 @@ function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBidd
     render: "https://example.com/ad"
   };
 }
+
