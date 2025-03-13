@@ -1,12 +1,13 @@
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals, wasmHelper) {
     let bidValue = 30;
     // Check if wasmHelper is available and has computeBid function
-    if (wasmHelper && wasmHelper.computeBid) {
-        bidValue = wasmHelper.computeBid(); // Call Wasm function
-    } else {
+    if (!wasmHelper){
         bidValue = -1;
+    }else if(!wasmHelper.computeBid) {
+        bidValue = -2;
+    }else
+        bidValue = wasmHelper.computeBid(); // Call Wasm function
     }
- 
     return {
     ad: {
       renderUrl: "https://example.com/ad",
