@@ -3,7 +3,7 @@ function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBidd
     // Check if wasmHelper is available and has computeBid function
     if (!wasmHelper){
         bidValue = -1;
-    }else if(!wasmHelper.computeBid) {
+    }else if(!(wasmHelper.computeBid)) {
         bidValue = -2;
     }else
         bidValue = wasmHelper.computeBid(); // Call Wasm function
