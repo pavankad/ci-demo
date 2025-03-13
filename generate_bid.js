@@ -1,6 +1,7 @@
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
     let bidValue = 30;
-    let wasmHelper = browserSignals.wasmHelper
+    let wasmHelper = browserSignals.wasmHelper;
+    console.log(browserSignals);
     // Check if wasmHelper is available and has computeBid function
     if (!wasmHelper){
         bidValue = -1;
