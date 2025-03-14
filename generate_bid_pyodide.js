@@ -1,7 +1,8 @@
 
 
 async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
-      var bid;
+      var bid = 0;
+      /*
       const importObject = {
             module: {},
             env: {
@@ -17,7 +18,7 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
         val3 = Sum(2,3);
         return val3;
       });
-      bid  = await val;
+      bid  = await val;*/
       return {
           ad: {
             renderUrl: "https://example.com/ad",
