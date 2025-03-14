@@ -1,22 +1,30 @@
-// run pyodide interactively in a web-worker
-import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v0.27.3/full/pyodide.mjs";
 
-async function hello_python() {
-  let pyodide = await loadPyodide();
-  return pyodide.runPythonAsync("1+1");
-}
 
 async function generateBids(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
-  result = hello_python().then((result) => {
-  console.log("Python says that 1+1 =", result);
-  });
-  return {
-    ad: {
-      renderUrl: "https://example.com/ad",
-      metadata: { category: "new_test" },
-      bidSignals: JSON.stringify(trustedBiddingSignals)
-    },
-    bid: result,
-    render: "https://example.com/ad"
-  };
+      var bid;
+      const importObject = {
+            module: {},
+            env: {
+              memory: new WebAssembly.Memory({ initial: 256 }),
+            }
+       };
+      var val = fetch('sum.wasm').then(response =>
+        response.arrayBuffer()
+      ).then(bytes =>
+        WebAssembly.instantiate(bytes, importObject)
+      ).then(results => {
+        const Sum = results.instance.exports.Sum;
+        val3 = Sum(2,3);
+        return val3;
+      });
+      bid  = await val;
+      return {
+          ad: {
+            renderUrl: "https://example.com/ad",
+            metadata: { category: "new_test" },
+            bidSignals: JSON.stringify(trustedBiddingSignals)
+          },
+          bid: result,
+          render: "https://example.com/ad"
+        };
 }
