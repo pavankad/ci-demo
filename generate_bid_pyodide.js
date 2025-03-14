@@ -1,6 +1,6 @@
 
 
-async function generateBids(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
+async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
       var bid;
       const importObject = {
             module: {},
