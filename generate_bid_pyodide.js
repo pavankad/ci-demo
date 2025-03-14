@@ -23,7 +23,7 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
             metadata: { category: "new_test" },
             bidSignals: JSON.stringify(trustedBiddingSignals)
           },
-          bid: 10,
+          bid: bid,
           render: "https://example.com/ad"
         };
 }
