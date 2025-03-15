@@ -19,4 +19,5 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
           render: "https://example.com/ad"
         };
       });
+      return await val;
  }
