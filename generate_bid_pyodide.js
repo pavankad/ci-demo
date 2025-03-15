@@ -5,19 +5,25 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
       if(!wasmCode){
             bid = -1;
       }
-      var val = WebAssembly.instantiate(wasmCode)
-                .then(results => {
-        const Sum = results.instance.exports.Sum;
-        val3 = Sum(2,3);
-        return {
+    const importObject = {
+          my_namespace: {
+            imported_func(arg) {
+            console.log(arg);
+          },
+        },
+    };
+    const mod = new WebAssembly.Module(globalWasmHex);
+    const instance = new WebAssembly.Instance(mod, importObject);
+    console.log(instance.exports);
+    bid = instance.exports.Sum(2,3);
+    return {
           ad: {
             renderUrl: "https://example.com/ad",
             metadata: { category: "new_test" },
             bidSignals: JSON.stringify(trustedBiddingSignals)
           },
-          bid: val3,
+          bid: bid,
           render: "https://example.com/ad"
         };
       });
-      return await val;
  }
