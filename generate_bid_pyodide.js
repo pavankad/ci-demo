@@ -12,9 +12,9 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
           },
         },
     };
-    const mod = new WebAssembly.Module(globalWasmHex);
+    const mod = new WebAssembly.Module(wasmCode);
     const instance = new WebAssembly.Instance(mod, importObject);
-    console.log(instance.exports);
+    //console.log(instance.exports);
     bid = instance.exports.Sum(2,3);
     return {
           ad: {
@@ -25,5 +25,5 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
           bid: bid,
           render: "https://example.com/ad"
         };
-      });
  }
+
