@@ -1,22 +1,15 @@
 async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
       var bid = 0;
-      
-      const importObject = {
-            module: {},
-            env: {
-              memory: new WebAssembly.Memory({ initial: 256 }),
-            }
-       };
-      var val = fetch('sum.wasm').then(response =>
-        response.arrayBuffer()
-      ).then(bytes =>
-        WebAssembly.instantiate(bytes, importObject)
+      if(!globalWasmHex){
+            bid = -1;
+      }
+      var val = WebAssembly.instantiate(globalWasmHex)
       ).then(results => {
         const Sum = results.instance.exports.Sum;
         val3 = Sum(2,3);
         return val3;
       });
-      bid  = await val;
+      bid = await val;
       return {
           ad: {
             renderUrl: "https://example.com/ad",
