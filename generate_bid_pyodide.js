@@ -1,10 +1,10 @@
 async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
-      var bid = 0;
+           var bid = 0;
       if(!globalWasmHex){
             bid = -1;
       }
       var val = WebAssembly.instantiate(globalWasmHex)
-      ).then(results => {
+                .then(results => {
         const Sum = results.instance.exports.Sum;
         val3 = Sum(2,3);
         return val3;
@@ -16,7 +16,7 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
             metadata: { category: "new_test" },
             bidSignals: JSON.stringify(trustedBiddingSignals)
           },
-          bid: 10,
+          bid: bid,
           render: "https://example.com/ad"
         };
-}
+ }
