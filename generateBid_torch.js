@@ -2,7 +2,7 @@ function generateBid() {
     const batchInferenceRequest = {
         request: [
             {
-                model_path: '/model/path',
+                model_path: 'services/inference_sidecar/common/testdata/models/pytorch_generate_bid_model.pt',
                 tensors: [
                     {
                         tensor_name: 'input',
