@@ -5,8 +5,8 @@ async function generateBid(interestGroup, auctionSignals, perBuyerSignals, trust
     },
     bid: 0.7,
     render: "https://example.com/ad",
-    perBuyer: perBuyerSignals,
-    auctionSignals: auctionSignals,
-    interestGroup: interestGroup
+    perBuyer: JSON.stringify(perBuyerSignals),
+    auctionSignals: JSON.stringify(auctionSignals),
+    interestGroup: JSON.stringify(interestGroup)
   };
 }
